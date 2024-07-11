@@ -1,0 +1,98 @@
+version: "3"
+services:
+       api-gw:
+           container_name: apigw
+           image: apigw
+           restart: always
+           build: ./API_GW
+           depends_on: 
+             - usrdb
+             - contentdb
+             - user-service
+             - content-service
+             - analytics-service
+           ports:
+             - 3000:3000
+           environment: 
+             - USER_DB_HOST=usrdb
+             - ENCRYPTION_KEY=abcdef
+             - CONTENT_SERVICE_HOST=content-service
+             - USER_SERVICE_HOST=user-service
+             - NOTIFICATION_SERVICE_HOST=notification-service
+             - ANALYTICS_SERVICE_HOST=analytics-service
+       content-service:
+           container_name: contentservice
+           image: contentservice
+           restart: always
+           build: ./CONTENT_SERVICE
+           depends_on: 
+             - contentdb
+          # content-service should be hidden no direct invocations
+          #  ports:
+          #    - 3001:3000
+           expose:
+             - 3000
+           environment: 
+             - MONGO_URL=contentdb
+             - MONGO_USERNAME=burnet
+             - MONGO_PASSWORD=1234
+       user-service:
+           image: user-service
+           restart: always
+           build: ./USER_SERVICE
+           depends_on: 
+             - usrdb
+          # user-service should be hidden no direct invocations
+          #  ports:
+          #    - 3000:3000
+           expose:
+             - 3000
+           environment: 
+             - USER_DB_HOST=usrdb
+       notification-service:
+           image: notification-service
+           restart: always
+           build: ./NOTIFICATION_SERVICE
+           depends_on: 
+             - usrdb
+          # notification-service should be hidden no direct invocations
+          #  ports:
+          #    - 3000:3000
+           expose:
+             - 3000
+           environment: 
+             - USER_DB_HOST=usrdb
+       analytics-service:
+           image: analytics-service
+           restart: always
+           build: ./ANALYTICS_SERVICE
+           depends_on: 
+             - usrdb
+          # user-service should be hidden no direct invocations
+          #  ports:
+          #    - 3000:3000
+           expose:
+             - 3000
+           environment: 
+             - USER_DB_HOST=usrdb
+       usrdb:
+            image: postgres:14-alpine
+            ports:
+              - 5432:5432
+            volumes:
+              - ./INIT_DB/data/userdb:/userdb/var/lib/postgresql/data
+              - ./INIT_DB/scripts/userdb:/docker-entrypoint-initdb.d
+            environment:
+              - POSTGRES_PASSWORD=1234
+              - POSTGRES_USER=burnet
+              - POSTGRES_DB=tip_be_user_service
+              - PGDATA=/var/lib/postgresql/data/some_name/
+       contentdb:
+            image: mongo:6-jammy
+            ports:
+              - '27018:27017'
+            volumes:
+              - ./INIT_DB/data/contentdb:/data/db
+            environment:
+              - MONGO_INITDB_ROOT_USERNAME=burnet
+              - MONGO_INITDB_ROOT_PASSWORD=1234

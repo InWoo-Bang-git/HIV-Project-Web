@@ -1,0 +1,593 @@
+{
+	"info": {
+		"_postman_id": "346a9765-aaf7-40e9-beed-41fe7cfd064c",
+		"name": "TIP_BE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30212740"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "jet@example.com39901",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Jerry",
+									"type": "text"
+								},
+								{
+									"key": "role",
+									"value": "user",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{baseUrl}}:{{port}}/register",
+							"protocol": "http",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Users",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://{{baseUrl}}:{{port}}/users/",
+							"protocol": "http",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUsers",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{baseUrl}}:{{user-service_port}}/users/getUsers",
+							"protocol": "http",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"port": "{{user-service_port}}",
+							"path": [
+								"users",
+								"getUsers"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "jet@example.com39901",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{baseUrl}}:{{port}}/login",
+							"protocol": "http",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Content",
+			"item": [
+				{
+					"name": "Get a single page of content",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://{{baseUrl}}:{{port}}/content/page/645c72da98cbed78ec205585",
+							"protocol": "http",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"content",
+								"page",
+								"645c72da98cbed78ec205585"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all topics",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{baseUrl}}:{{port}}/content/topics",
+							"protocol": "http",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"content",
+								"topics"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Admin",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://{{baseUrl}}:{{port}}/admin",
+							"protocol": "http",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"admin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Test Kits",
+			"item": [
+				{
+					"name": "testKitOrders",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "user_id",
+									"value": "e986e13c-972e-4332-a712-aa2df9cbf8ca",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{baseUrl}}:{{user-service_port}}/users/orders/",
+							"protocol": "http",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"port": "{{user-service_port}}",
+							"path": [
+								"users",
+								"orders",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "userTestKits",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://{{baseUrl}}:{{user-service_port}}/users/getUserTestKitOrders/e986e13c-972e-4332-a712-aa2df9cbf8ca",
+							"protocol": "http",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"port": "{{user-service_port}}",
+							"path": [
+								"users",
+								"getUserTestKitOrders",
+								"e986e13c-972e-4332-a712-aa2df9cbf8ca"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Test Results",
+			"item": [
+				{
+					"name": "addTestResult",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "user_id",
+									"value": "a7759f3f-7e0d-41ae-a7e0-e11b0059abfb",
+									"type": "text"
+								},
+								{
+									"key": "result_outcome",
+									"value": "Neutral",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{baseUrl}}:{{user-service_port}}/users/addTestResult",
+							"protocol": "http",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"port": "{{user-service_port}}",
+							"path": [
+								"users",
+								"addTestResult"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTestResults",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{baseUrl}}:{{user-service_port}}/users/getTestResults/a7759f3f-7e0d-41ae-a7e0-e11b0059abfb",
+							"protocol": "http",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"port": "{{user-service_port}}",
+							"path": [
+								"users",
+								"getTestResults",
+								"a7759f3f-7e0d-41ae-a7e0-e11b0059abfb"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Demographics",
+			"item": [
+				{
+					"name": "AddUserDemographics",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "user_id",
+									"value": "a7759f3f-7e0d-41ae-a7e0-e11b0059abfb",
+									"type": "text"
+								},
+								{
+									"key": "ethnicity",
+									"value": "Australian",
+									"type": "text"
+								},
+								{
+									"key": "residential_status",
+									"value": "temporary",
+									"type": "text"
+								},
+								{
+									"key": "nationality",
+									"value": "Australian",
+									"type": "text"
+								},
+								{
+									"key": "state",
+									"value": "VIC",
+									"type": "text"
+								},
+								{
+									"key": "postal_code",
+									"value": "3222",
+									"type": "text"
+								},
+								{
+									"key": "city",
+									"value": "Malvern",
+									"type": "text"
+								},
+								{
+									"key": "gender",
+									"value": "Male",
+									"type": "text"
+								},
+								{
+									"key": "sexual_orientation",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{baseUrl}}:{{user-service_port}}/users/addUserDemographics",
+							"protocol": "http",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"port": "{{user-service_port}}",
+							"path": [
+								"users",
+								"addUserDemographics"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUserDemographics",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{baseUrl}}:{{user-service_port}}/users/getUserDemographics/a7759f3f-7e0d-41ae-a7e0-e11b0059abfb",
+							"protocol": "http",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"port": "{{user-service_port}}",
+							"path": [
+								"users",
+								"getUserDemographics",
+								"a7759f3f-7e0d-41ae-a7e0-e11b0059abfb"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "localhost",
+			"type": "string"
+		},
+		{
+			"key": "port",
+			"value": "3000",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSmVycnkiLCJlbWFpbCI6ImpldEBleGFtcGxlLmNvbTM5OTAxIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2OTU5OTQzMzEsImV4cCI6MTY5NjAwMTUzMX0.8kAhNGnFwu0xIpWTrZY4ELFh5EBo0YydKAPNg3-z7SE",
+			"type": "string"
+		},
+		{
+			"key": "user-service_port",
+			"value": "3000",
+			"type": "string"
+		}
+	]
+}

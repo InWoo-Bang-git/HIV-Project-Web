@@ -1,0 +1,1 @@
+API_KEY = "xsmtpsib-86dee4b97ef439be9a99ed1e37a0e240ba752bed0fa245f7498ce8bb9a0c4468-CqIZrvV3D7xhpcE2";
